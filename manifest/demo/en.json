@@ -1,0 +1,12 @@
+{
+  "block": "Quote",
+  "menu": "Quotes",
+  "quotes": [
+    {"text": "Call me Ishmael.", "author": "Herman Melville", "citation": "Moby-Dick; or, The Whale"},
+    {"text": "It is not down in any map; true places never are.", "author": "Herman Melville", "citation": "Moby-Dick; or, The Whale"},
+    {"text": "Better sleep with a sober cannibal than a drunken Christian.", "author": "Herman Melville", "citation": "Moby-Dick; or, The Whale"},
+    {"text": "Pieces of eight! pieces of eight! pieces of eight!", "author": "Robert Louis Stevenson", "citation": "Treasure Island, Captain Flint the parrot"},
+    {"text": "The sea is everything. It covers seven tenths of the terrestrial globe.", "author": "Jules Verne", "citation": "Twenty Thousand Leagues Under the Sea"},
+    {"text": "Mobilis in mobili - moving within the moving element.", "author": "Jules Verne", "citation": "Twenty Thousand Leagues Under the Sea, the Nautilus's motto"}
+  ]
+}

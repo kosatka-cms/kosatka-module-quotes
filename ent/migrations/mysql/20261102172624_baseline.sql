@@ -1,0 +1,4 @@
+-- Create "quotes_authors" table
+CREATE TABLE `quotes_authors` (`id` int NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `node_id` int unsigned NULL, PRIMARY KEY (`id`), UNIQUE INDEX `name` (`name`), INDEX `quoteauthor_node_id` (`node_id`), CONSTRAINT `quotes_authors_nodes_node` FOREIGN KEY (`node_id`) REFERENCES `nodes` (`id`) ON DELETE SET NULL) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- Create "quotes" table
+CREATE TABLE `quotes` (`id` int NOT NULL AUTO_INCREMENT, `text` mediumtext NOT NULL, `citation` mediumtext NULL, `created_at` timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP), `updated_at` timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP), `author_id` int NULL, PRIMARY KEY (`id`), INDEX `quote_author_id` (`author_id`), CONSTRAINT `quotes_quotes_authors_author` FOREIGN KEY (`author_id`) REFERENCES `quotes_authors` (`id`) ON DELETE SET NULL) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;

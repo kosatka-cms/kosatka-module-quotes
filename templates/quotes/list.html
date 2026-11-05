@@ -1,0 +1,58 @@
+{{template "layout.html" .}}
+
+{{define "title"}}<h1>{{.title}}</h1>{{end}}
+
+{{define "breadcrumb"}}{{template "breadcrumbs_nav" .}}{{end}}
+
+{{define "content"}}{{attach "quotes"}}
+<article class="quotes-list">
+
+    {{if .canEditQuotes}}
+    <p class="mb-3">
+        <a href="/quotes/create" class="btn btn-primary">{{t "Add quote"}}</a>
+    </p>
+    {{end}}
+
+    {{if .quotes}}
+    <div class="quotes-container">
+        {{range .quotes}}
+        <div class="quote-item">
+            <blockquote class="quote-text">
+                {{.Text | processContent}}
+            </blockquote>
+
+            <div class="quote-footer">
+                {{if .Author}}
+                <cite class="quote-author"> -
+                    <a href="/quotes/author/{{.Author.Name | pathEscape}}">{{.Author.Name}}</a>
+                </cite>
+                {{end}}
+
+                {{if .Citation}}
+                <span class="quote-citation">{{.Citation}}</span>
+                {{end}}
+
+                {{if $.canEditQuotes}}
+                <span class="quote-actions ms-2">
+                    <a href="/quotes/edit/{{.ID}}">{{t "Edit"}}</a>
+                    <span class="mx-1">|</span>
+                    <a href="/quotes/delete/{{.ID}}">{{t "Delete"}}</a>
+                </span>
+                {{end}}
+            </div>
+        </div>
+        {{end}}
+    </div>
+
+    {{if .pagination}}
+    <div class="pagination-wrapper">
+        {{template "pagination.html" .}}
+    </div>
+    {{end}}
+
+    {{else}}
+    <p>{{t "No quotes found."}}</p>
+    {{end}}
+</article>
+
+{{end}}

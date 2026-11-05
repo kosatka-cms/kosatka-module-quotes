@@ -1,0 +1,34 @@
+{{template "layout.html" .}}
+
+{{define "title"}}<h1>{{.title}}</h1>{{end}}
+
+{{define "breadcrumb"}}{{template "breadcrumbs_nav" .}}{{end}}
+
+{{define "content"}}
+
+<article class="quote-delete">
+    <div class="warning delete-confirm">
+        <p style="font-size: 16px; margin-bottom: 15px;">
+            <strong>{{t "Are you sure you want to delete this quote?"}}</strong>
+        </p>
+
+        <div class="quote-preview delete-confirm-preview">
+            <blockquote>{{.quote.Text | processContent}}</blockquote>
+            {{if .quote.Author}}
+            <cite>- {{.quote.Author.Name}}</cite>
+            {{end}}
+            {{if .quote.Citation}}
+            <p><small>{{.quote.Citation}}</small></p>
+            {{end}}
+        </div>
+    </div>
+
+    <div class="form-actions mt-4">
+        <form action="/quotes/delete/{{.quote.ID}}" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">{{t "Yes, delete"}}</button>
+        </form>
+        <a href="/quotes" class="btn btn-secondary">{{t "Cancel"}}</a>
+    </div>
+</article>
+
+{{end}}

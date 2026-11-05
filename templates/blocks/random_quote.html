@@ -1,0 +1,29 @@
+{{/* block_random_quote - plugin block "random_quote" (the quotes module):
+     a placeholder the module's quotes.js fills from /api/quote/random.
+     Takes (dict "PluginID" "Ctx" "Placement"). */}}
+{{define "block_random_quote"}}{{template "quote-placeholder" .Ctx}}{{end}}
+
+{{define "quote-content"}}
+<div class="block-quotes">
+    <div class="block-content">
+        <article class="quote">
+            <div class="quote-text">{{.randomQuote.Text | rawHTML}}</div>
+            {{with .randomQuote.Author}}<div class="quotes-author">- <a href="/quotes/author/{{.Name | pathEscape}}">{{.Name}}</a></div>{{end}}
+        </article>
+    </div>
+</div>
+{{end}}
+
+{{define "quote-placeholder"}}
+<div id="random-quote-section">
+    <div class="quote-loading">
+        <div class="loading-skeleton-quote">
+            <div class="skeleton-quote-text"></div>
+            <div class="skeleton-quote-text"></div>
+            <div class="skeleton-quote-author"></div>
+        </div>
+    </div>
+    <div class="quote-content"></div>
+</div>
+
+{{end}}

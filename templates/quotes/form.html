@@ -1,0 +1,41 @@
+{{template "layout.html" .}}
+
+{{define "title"}}<h1>{{.title}}</h1>{{end}}
+
+{{define "breadcrumb"}}{{template "breadcrumbs_nav" .}}{{end}}
+
+{{define "content"}}{{attach "quotes"}}
+
+<article class="quote-form">
+    {{$quote := .quote}}
+    {{$isEdit := $quote}}
+    <form id="quote-form" action="{{if $isEdit}}/quotes/edit/{{$quote.ID}}{{else}}/quotes/create{{end}}" method="POST">
+        <div class="form-group">
+            <label for="text">{{t "Quote text"}} <span class="required">*</span></label>
+            <textarea id="text" name="text" class="form-control quote-text-editor" rows="5" data-editor-autoload data-editor-config="{{json (dict "preset" "comment" "height" 200)}}">{{if $quote}}{{$quote.Text}}{{end}}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="author-display">{{t "Author"}}</label>
+            <input type="text" id="author-display" class="form-control" placeholder="{{t "Start typing to search or enter a new author"}}" autocomplete="off" data-initial-author="{{.initialAuthorJSON}}">
+            <input type="hidden" id="author_id" name="author_id" value="{{if $quote}}{{if $quote.Author}}{{$quote.Author.ID}}{{end}}{{end}}">
+            <input type="hidden" id="author_name" name="author_name" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="citation">{{t "Source (citation)"}}</label>
+            <input type="text" id="citation" name="citation" class="form-control" value="{{if $quote}}{{$quote.Citation}}{{end}}" placeholder="{{t "For example: title, issue, page"}}">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{{t "Save"}}</button>
+            <a href="/quotes" class="btn btn-secondary">{{t "Cancel"}}</a>
+        </div>
+    </form>
+</article>
+
+{{template "tinymce_user_files.html" .}}
+
+<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.39.0/dist/tagify.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.39.0"></script>
+{{end}}

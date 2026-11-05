@@ -1,0 +1,56 @@
+/* The random quote block's placeholder (blocks/random_quote.html) until
+   quotes.js fills it: a skeleton in Bootstrap's colors (light or dark
+   scheme) with the engine's kosatka-skeleton-pulse (components.css).
+   Rules are wrapped in :where(), so a theme's rule wins. */
+:where(.quote-loading) {
+    padding: 15px;
+    background: var(--bs-tertiary-bg);
+    border-radius: 4px;
+}
+:where(.loading-skeleton-quote) {
+    animation: kosatka-skeleton-pulse 1.5s ease-in-out infinite;
+}
+:where(.skeleton-quote-text, .skeleton-quote-author) {
+    background: var(--bs-secondary-bg);
+    border-radius: 4px;
+}
+:where(.skeleton-quote-text) {
+    height: 16px;
+    margin-bottom: 10px;
+}
+:where(.skeleton-quote-text:last-of-type) {
+    width: 80%;
+}
+:where(.skeleton-quote-author) {
+    width: 150px;
+    height: 14px;
+    margin-top: 15px;
+}
+:where(#random-quote-section.quote-loaded .quote-loading, #random-quote-section.hidden) {
+    display: none;
+}
+
+/* The quotes' pages (/quotes, an author's): each quote a block - its
+   text and, right under it, who said it and where - the quotes apart, a
+   line at their left in the scheme's border colour. Plain classes, not
+   :where(): Bootstrap's blockquote and p margins would win; a theme's
+   CSS, loaded after, still does. */
+.quotes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+.quote-item {
+    padding: .25rem 0 .25rem 1rem;
+    border-left: 3px solid var(--bs-border-color);
+}
+.quote-item .quote-text {
+    margin: 0 0 .375rem;
+}
+.quote-item .quote-text p:last-child {
+    margin-bottom: 0;
+}
+.quote-item .quote-footer {
+    color: var(--bs-secondary-color);
+    font-size: .9375rem;
+}

@@ -1,0 +1,25 @@
+{{template "layout.html" .}}
+
+{{define "title"}}<h1>{{.title}}</h1>{{end}}
+
+{{define "breadcrumb"}}{{template "breadcrumbs_nav" .}}{{end}}
+
+{{define "content"}}
+<article class="authors-list">
+    {{if .authors}}
+    <div class="authors-scrollable">
+        {{range .authors}}
+        <div class="author-item">
+            <a href="/quotes/author/{{.Name | pathEscape}}" class="author-link">
+                <span class="author-name">{{.Name}}</span>
+                <span class="author-count">({{.QuotesCount}})</span>
+            </a>
+        </div>
+        {{end}}
+    </div>
+    {{else}}
+    <p>{{t "No authors found."}}</p>
+    {{end}}
+</article>
+
+{{end}}

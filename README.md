@@ -9,6 +9,22 @@ different quote on every page view. An author can be linked to a content
 item, for example a biography, and that item's page then links to the
 author's quotes.
 
+## Screenshots
+
+On a site with the engine's demo blog and the built-in theme; a picture
+opens the whole page.
+
+<table>
+  <tr>
+    <td width="50%"><a href="docs/screenshots/quotes.webp"><img src="docs/screenshots/quotes-preview.webp" alt="The quotes page"></a><br>The quotes, newest first (<code>/quotes</code>)</td>
+    <td width="50%"><a href="docs/screenshots/author.webp"><img src="docs/screenshots/author-preview.webp" alt="An author's quotes"></a><br>An author's quotes (<code>/quotes/author/&lt;name&gt;</code>)</td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/block.webp" alt="The random quote block" width="338"><br>The random quote block: a new quote on every page view</td>
+    <td><a href="docs/screenshots/phone-quotes.webp"><img src="docs/screenshots/phone-quotes-preview.webp" alt="The quotes on a phone" width="48%"></a><br>On a phone</td>
+  </tr>
+</table>
+
 ## Install
 
 A site with modules from outside the engine builds its own binary
@@ -168,6 +184,12 @@ A schema change: edit `ent/schema`, `go generate ./ent`, then
 it writes the next migration for MySQL and PostgreSQL into
 `ent/migrations`; `go run ./cmd/migrations -check` fails while the files
 are behind the schema. See [Write a module](https://kosatka-cms.github.io/kosatka/modules/write-a-module/).
+
+The README's screenshots: on a site installed with the engine's demo
+blog and this module (`app install -demo -modules quotes`),
+`python3 scripts/screenshots.py http://127.0.0.1:8080` (the site's
+address) takes them again into `docs/screenshots/` - Python 3 and
+Google Chrome are all it needs.
 
 ## License
 
